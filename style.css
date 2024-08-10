@@ -1,10 +1,15 @@
 body {
   margin: 0;
   height: 100vh;
+  overflow: hidden; /* Prevents scrolling */
   background-color: black;
   overflow: hidden;
   color: white;
   font-family: Arial, sans-serif;
+}
+
+html, body {
+  overflow: hidden;
 }
 
 span {
