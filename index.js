@@ -1,8 +1,8 @@
 const bodyEl = document.querySelector("body");
 
-bodyEl.addEventListener("mousemove", (event) => {
-  const xPos = event.offsetX;
-  const yPos = event.offsetY;
+const createHeart = (event) => {
+  const xPos = event.clientX || event.touches[0].clientX;
+  const yPos = event.clientY || event.touches[0].clientY;
   const spanEl = document.createElement("span");
   spanEl.style.left = xPos + "px";
   spanEl.style.top = yPos + "px";
@@ -13,4 +13,15 @@ bodyEl.addEventListener("mousemove", (event) => {
   setTimeout(() => {
     spanEl.remove();
   }, 3000);
-});
+};
+
+// Mouse event
+bodyEl.addEventListener("mousemove", createHeart);
+
+// Touch event
+bodyEl.addEventListener("touchstart", (event) => {
+  event.preventDefault(); // Prevents scrolling on touch devices
+  for (let i = 0; i < event.touches.length; i++) {
+    createHeart(event);
+  }
+}, { passive: false });
